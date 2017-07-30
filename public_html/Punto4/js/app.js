@@ -1,9 +1,12 @@
-// let name = prompt('What is your name?');
-// let idType = confirm('Has an identity card?') ? 'Identity Card' : confirm('Has an citizenship card?') ? 'Citizenship Card' : document.window.reload();
+let name = document.getElementById('name');
+let idType = document.getElementById('idType');
+let idNumber = document.getElementById('id_number');
+let gender = document.getElementById('gender');
+let height = document.getElementById('height');
+let live = document.getElementById('live');
+let data = document.getElementById('data');
 
-// You have citizenship card
-// Hello, my name is [YOUR FULL NAME].
-// My [DOCUMENT TYPE] number is [IDENTIFICATION NUMBER].
-// Biological gender: [MALE or FEMALE]
-// My height is: [STATURE] mts.
-// Is it true that I live in Carthage ?: [FALSE OR TRUE]
+data.addEventListener('click', () => {
+  console.log(`name: ${name.value}\n`, `Id Type: ${idType.value}\n`, `Id Number: ${idNumber.value}\n`, `Gender: ${gender.value}\n`, `Height: ${height.value}\n`, `Live In Cartago? ${live.value}\n`);
+
+});

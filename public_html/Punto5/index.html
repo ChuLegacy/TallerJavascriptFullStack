@@ -1,13 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta charset="UTF-8">
-	<title>Document</title>
-	<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-<script src="./js/app.js"></script>
-</body>
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Punto5</title>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <main class="container bg-black">
+      <section class="row d-flex justify-content-center align-items-center">
+        <form class="form col-10 offset-1 ">
+          <div class="form-group">
+            <label for="name" class="text-center">What is your name? </label>
+            <input required type="text" name="name" id="name" placeholder="Write your name" class="form-control">
+          </div>
+          <div class="form-group">
+            <select required name="id_type" id="idType" class="form-control">
+              <option value="" selected="selected">Document type</option>
+              <option value="Citizenship Card">Citizenship Card</option>
+              <option value="Identity Card">Identity Card</option>
+              <option value="Foreigner ID">Foreigner ID</option>
+              <option value="PS">Pasaporte</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="id_number">Identification Number: </label>
+            <input required type="number" name="id_number" id="id_number" min="0" placeholder="Identification Number" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="button" value="Send data to console" id="data" class=" form-control btn btn-outline-danger">
+          </div>
+        </form>
+      </section>
+    </main>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/tether/dist/js/tether.min.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
 </html>
