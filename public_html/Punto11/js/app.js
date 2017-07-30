@@ -1,4 +1,4 @@
 let x = '';
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i <= 5; i++) {
   console.log(`${x += '*'}`);
 }
