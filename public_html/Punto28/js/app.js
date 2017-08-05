@@ -10,6 +10,7 @@ function menu() {
 0. Salir del programa`));
   return option;
 }
+
 let arrangement = [];
 var size;
 function fillArrangement() {
@@ -55,7 +56,7 @@ function bubbleSorting() {
       }
     }
   }
-  console.log(arrangement);
+  validate();
 }
 function bubbleSortingBidirectional() {
   let rig;
@@ -76,13 +77,77 @@ function bubbleSortingBidirectional() {
       }
     }
   }
-  console.log(arrangement);
+  validate();
 }
-//function insertion() {
-//  for (array of arrangement) {
-//    for (i = 0; i < arrangement)
+function insertion() {
+  for (i = 0; i < arrangement.length; i++) {
+    for (j = 0; j <= arrangement[j]; j++) {
+      var ant = 0;
+      if (arrangement[i] < arrangement[j]) {
+        ant = arrangement[i];
+        arrangement[i] = arrangement[j];
+        arrangement[j] = ant;
+      }
+    }
+  }
+  console.log(arrangement);
+  validate();
+}
+function mixture() {
+//  for (j = 0; j < arrangement.length - 1; j++) {
+//
 //  }
-//}
+  let a = arrangement.slice(0, 4);
+  let c = a.slice(0, 2);
+  let d = a.slice(2);
+  if (c[1] < c[0]) {
+    ant = 0;
+    ant = c[1];
+    c[1] = c[0];
+    c[0] = ant;
+  }
+  if (d[1] < d[0]) {
+    ant = 0;
+    ant = d[1];
+    d[1] = d[0];
+    d[0] = ant;
+  }
+  if (c[0] > d[0]) {
+    ant = 0;
+    ant = c[0];
+    c[0] = d[0];
+    d[0] = ant;
+  } else if ((c[0] > d[0]) && (c[0] > d[1])) {
+    ant = 0;
+    ant = c[0];
+    c[0] = d[1];
+    d[1] = ant;
+
+    d[1] = c[0];
+
+  }
+  a = c.concat(d);
+  let b = arrangement.slice(4);
+  let e = b.slice(0, 2);
+  let f = b.slice(2);
+  if (e[1] < e[0]) {
+    ant = 0;
+    ant = e[1];
+    e[1] = e[0];
+    e[0] = ant;
+  }
+  if (f[1] < f[0]) {
+    ant = 0;
+    ant = f[1];
+    f[1] = f[0];
+    f[0] = ant;
+  }
+  b = e.concat(f);
+  arrangement = a.concat(b);
+  console.log(b);
+  validate();
+
+}
 
 function print() {
   console.log(arrangement);
@@ -103,6 +168,12 @@ function validate() {
       break;
     case 4:
       bubbleSortingBidirectional();
+      break;
+    case 5:
+      insertion();
+      break;
+    case 6:
+      mixture();
       break;
     case 8:
       print();
