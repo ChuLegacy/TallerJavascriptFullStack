@@ -1,13 +1,13 @@
 function menu() {
-  let option = parseInt(prompt(`1. Llenar arreglo
-2. Buscar elemento por método de búsqueda secuencial
-3. Aplicar método de ordenamiento de burbuja
-4. Aplicar método de ordenamiento de burbuja bidireccional
-5. Aplicar método de ordenamiento por inserción
-6. Aplicar método de ordenamiento por mezcla
-7. Aplicar el método de ordenamiento por selección
-8. Imprimir arreglo.
-0. Salir del programa`));
+  let option = parseInt(prompt(`1. Fill arrangement
+2. Find element by sequential search method
+3. Apply bubble sorting method
+4. Apply the method of ordering the bidirectional bubble
+5. Apply the insertion sort method
+6. Apply the ordering method by the mixture
+7. Apply the ordering method by selection
+8. Print.
+0. Quit the program`));
   return option;
 }
 
@@ -31,127 +31,144 @@ function search() {
     for (let array of arrangement) {
       if (array === find) {
         cont++;
-        info = `El elemento ha sido encontrado: ${cont} veces`;
+        info = `Item has been found: ${cont} times`;
       } else {
-        bad = 'El elemento no ha sido encontrado dentro del array';
+        bad = 'The element has not been found inside the array';
       }
     }
     console.log(cont === 0 ? bad : info);
     validate();
   } else {
-    alert('EL arreglo esta vacio');
+    alert('The arrangement is empty');
     validate();
   }
 }
 
 
 function bubbleSorting() {
-  let ant;
-  for (let j = 0; j < size; j++) {
-    for (let i = 0; i < arrangement.length - 1; i++) {
-      if (arrangement[i] >= arrangement[i + 1]) {
-        ant = arrangement[i];
-        arrangement[i] = arrangement[i + 1];
-        arrangement[i + 1] = ant;
+  if (arrangement.length !== 0) {
+    let ant;
+    for (let j = 0; j < size; j++) {
+      for (let i = 0; i < arrangement.length - 1; i++) {
+        if (arrangement[i] >= arrangement[i + 1]) {
+          ant = arrangement[i];
+          arrangement[i] = arrangement[i + 1];
+          arrangement[i + 1] = ant;
+        }
       }
     }
+    validate();
+  } else {
+    alert('The arrangement is empty');
+    validate();
   }
-  validate();
 }
 function bubbleSortingBidirectional() {
-  let rig;
-  for (j = 0; j < size; j++) {
-    for (i = 0; i < arrangement.length; i++) {
-      if (arrangement[i] >= arrangement[i + 1]) {
-        rig = arrangement[i];
-        arrangement[i] = arrangement[i + 1];
-        arrangement[i + 1] = rig;
+  if (arrangement !== 0) {
+    let rig;
+    for (j = 0; j < size; j++) {
+      for (i = 0; i < arrangement.length; i++) {
+        if (arrangement[i] >= arrangement[i + 1]) {
+          rig = arrangement[i];
+          arrangement[i] = arrangement[i + 1];
+          arrangement[i + 1] = rig;
+        }
+      }
+      let left;
+      for (i = arrangement.length - 1; i > 0; i--) {
+        if (arrangement[i] < arrangement[i - 1]) {
+          left = arrangement[i];
+          arrangement[i] = arrangement[i - 1];
+          arrangement[i - 1] = left;
+        }
       }
     }
-    let left;
-    for (i = arrangement.length - 1; i > 0; i--) {
-      if (arrangement[i] < arrangement[i - 1]) {
-        left = arrangement[i];
-        arrangement[i] = arrangement[i - 1];
-        arrangement[i - 1] = left;
-      }
-    }
+    validate();
+  } else {
+    alert('The arrangement is empty');
+    validate();
   }
-  validate();
 }
 function insertion() {
-  for (i = 0; i < arrangement.length; i++) {
-    for (j = 0; j <= arrangement[j]; j++) {
-      var ant = 0;
-      if (arrangement[i] < arrangement[j]) {
-        ant = arrangement[i];
-        arrangement[i] = arrangement[j];
-        arrangement[j] = ant;
+  if (arrangement.length !== 0) {
+    for (i = 0; i < arrangement.length; i++) {
+      for (j = 0; j <= arrangement[j]; j++) {
+        var ant = 0;
+        if (arrangement[i] < arrangement[j]) {
+          ant = arrangement[i];
+          arrangement[i] = arrangement[j];
+          arrangement[j] = ant;
+        }
       }
     }
+    console.log(arrangement);
+    validate();
+  } else {
+    alert('The arrangement is empty');
+    validate();
   }
-  console.log(arrangement);
-  validate();
 }
 function mixture() {
-//  for (j = 0; j < arrangement.length - 1; j++) {
-//
-//  }
-  let a = arrangement.slice(0, 4);
-  let c = a.slice(0, 2);
-  let d = a.slice(2);
-  if (c[1] < c[0]) {
-    ant = 0;
-    ant = c[1];
-    c[1] = c[0];
-    c[0] = ant;
+  if (arrangement.length !== 0) {
+    let mergeSort = array => {
+      if (array.length < 2) {
+        return array;
+      }
+      let middle = parseInt(array.length / 2) | 0;
+      let left = array.slice(0, middle);
+      let right = array.slice(middle);
+      let merge = (left, right) => {
+        let result = [];
+        let il = ir = 0;
+        while (il < left.length && ir < right.length) {
+          result.push((left[il] < right[ir]) ? left[il++] : right[ir++]);
+        }
+        return [...result, ...left.slice(il), ...right.slice(ir)];
+      };
+      return merge(mergeSort(left), mergeSort(right));
+    };
+    let result = mergeSort(arrangement);
+    arrangement = result;
+    validate();
+  } else {
+    alert('The arrangement is empty');
+    validate();
   }
-  if (d[1] < d[0]) {
-    ant = 0;
-    ant = d[1];
-    d[1] = d[0];
-    d[0] = ant;
-  }
-  if (c[0] > d[0]) {
-    ant = 0;
-    ant = c[0];
-    c[0] = d[0];
-    d[0] = ant;
-  } else if ((c[0] > d[0]) && (c[0] > d[1])) {
-    ant = 0;
-    ant = c[0];
-    c[0] = d[1];
-    d[1] = ant;
-
-    d[1] = c[0];
-
-  }
-  a = c.concat(d);
-  let b = arrangement.slice(4);
-  let e = b.slice(0, 2);
-  let f = b.slice(2);
-  if (e[1] < e[0]) {
-    ant = 0;
-    ant = e[1];
-    e[1] = e[0];
-    e[0] = ant;
-  }
-  if (f[1] < f[0]) {
-    ant = 0;
-    ant = f[1];
-    f[1] = f[0];
-    f[0] = ant;
-  }
-  b = e.concat(f);
-  arrangement = a.concat(b);
-  console.log(b);
-  validate();
 
 }
+function selection() {
+  if (arrangement.length !== 0) {
+    let selectionSort = arr => {
+      for (let j = 0; j < arr.length; ++j) {
+        let i = iMin = j;
+        for (++i; i < arr.length; ++i) {
+          (arr[ i ] < arr[ iMin ]) && (iMin = i);
+        }
+        [arr[ j ], arr[ iMin ]] = [arr[ iMin ], arr[ j ]];
+      }
 
+      return arr;
+    };
+    let result = selectionSort(arrangement);
+    arrangement = result;
+    validate();
+  } else {
+    alert('The arrangement is empty');
+    validate();
+  }
+}
 function print() {
-  console.log(arrangement);
-  validate();
+  if (arrangement.length !== 0) {
+    let info = '';
+    for (let array of arrangement) {
+      info += array + " | ";
+    }
+    console.log(info);
+    validate();
+  } else {
+    alert('The arrangement is empty');
+    validate();
+  }
 }
 
 function validate() {
@@ -175,11 +192,14 @@ function validate() {
     case 6:
       mixture();
       break;
+    case 7:
+      selection();
+      break;
     case 8:
       print();
       break;
     case 0:
-      alert('Bay Bay :) ');
+      alert('Bay!');
       break;
     default:
       validate();
