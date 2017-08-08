@@ -29,9 +29,7 @@ function name() {
   configG = [
     global
   ];
-
   localStorage.setItem('config', JSON.stringify(configG));
-
   return configG;
 }
 function salaryMin() {
@@ -42,7 +40,6 @@ function salaryMin() {
   if (localStorage.getItem('config') !== undefined) {
     configG = JSON.parse(localStorage.getItem('config'));
     configG.push(global);
-
   } else {
     configG = [
       global
@@ -51,7 +48,6 @@ function salaryMin() {
   localStorage.setItem('config', JSON.stringify(configG));
   validateConfiguration();
   return configG;
-
 }
 function minRetention() {
   let mRetention = parseInt(prompt('Apartir de cuantos salarios minimos se cobrara retencion en la fuente?'));
@@ -63,7 +59,6 @@ function minRetention() {
   localStorage.setItem('config', JSON.stringify(configG));
   validateConfiguration();
   return configG;
-
 }
 function percentage() {
   let percentageR = parseInt(prompt('Porcentaje de retencion en la fuente? (%)'));
@@ -138,7 +133,6 @@ function validateConfiguration() {
       break;
     case 0:
       alert('Bay');
-
       break;
     default:
       validateConfiguration();
@@ -160,11 +154,24 @@ function gestionEmpleados() {
 3. Eliminar
 4. Volver
 0. Salir del programa`));
+  console.clear();
   console.log(`+---------------------------------------------------------------------+`);
   console.log(`|-----Cedula-----|-----Nombre-----|-----Apellidos-----|-----Cargo-----|`);
   console.log(`+---------------------------------------------------------------------+`);
   let personal = JSON.parse(localStorage.getItem('empleados'));
   if (personal !== null) {
+    let ant = 0;
+    for (let i = 0; i <= personal.length - 1; i++) {
+
+      if (personal[i + 1] !== undefined) {
+
+        if (personal[i].cedula > personal[i + 1].cedula) {
+          ant = personal[i];
+          personal[i] = personal[i + 1];
+          personal[i + 1] = ant;
+        }
+      }
+    }
     for (let emple of personal) {
       if (emple !== null && emple.cedula !== undefined) {
         console.log(`|-----${emple.cedula}-----|-----${emple.nombre}-----|-----${emple.apellido}-----|-----${emple.cargo}-----|`);
@@ -189,6 +196,7 @@ function validateGestion() {
       validateContinuar();
       break;
     case 0:
+      alert('Bay');
       break;
     default:
       break;
@@ -199,21 +207,19 @@ function add() {
   empleados = JSON.parse(localStorage.getItem('empleados'));
   if (empleados === null) {
     var cedula = prompt(`Cedula del nuevo empleado?`);
-
   } else {
     let flag = false;
     do {
-      var cedula = prompt(`Cedula del nuevo empleado?`);
+      var cedula = parseInt(prompt(`Cedula del nuevo empleado?`));
       for (let config of empleados) {
         for (let e in config) {
-          if (config[e] == cedula) {
+          if (config[e] === cedula) {
             flag = config[e];
           }
         }
       }
-    } while (cedula == flag);
+    } while (cedula === flag);
   }
-
   let nombre = prompt(`Nombre del nuevo empleado?`);
   let apellido = prompt(`Apellido del nuevo empleado?`);
   let cargo = prompt(`Cargo del nuevo empleado?`);
@@ -244,46 +250,39 @@ function add() {
   } else {
     empleados.push(personal);
   }
-
   localStorage.setItem('empleados', JSON.stringify(empleados));
   validateGestion();
   return personal;
 }
 function edit() {
-
   let empleados = JSON.parse(localStorage.getItem('empleados'));
   var object = 0;
   var flag = false;
-
   do {
-
-    var cedula = prompt(`Por favor ingrese el numero de cedula?`);
+    var cedula = parseInt(prompt(`Por favor ingrese el numero de cedula?`));
     for (i = 0; i < empleados.length; i++) {
       for (let datas in empleados[i]) {
-        if (empleados[i][datas] === cedula) {
+        if (empleados[i][datas] == cedula) {
           flag = true;
           object = i;
-
         }
       }
     }
   } while (flag === false);
-
   if (empleados === null) {
-    var cedula = prompt(`Cedula del nuevo empleado?`);
-
+    var cedula = parseInt(prompt(`Cedula del nuevo empleado?`));
   } else {
     let flag = false;
     do {
-      var cedula = prompt(`Cedula del nuevo empleado?`);
+      var cedula = parseInt(prompt(`Cedula del nuevo empleado?`));
       for (let config of empleados) {
         for (let e in config) {
-          if (config[e] == cedula) {
+          if (config[e] === cedula) {
             flag = config[e];
           }
         }
       }
-    } while (cedula == flag);
+    } while (cedula === flag);
   }
   let nombre = prompt(`Nombre del nuevo empleado?`);
   let apellido = prompt(`Apellido del nuevo empleado?`);
@@ -316,12 +315,11 @@ function edit() {
 function eliminar() {
   let empleados = JSON.parse(localStorage.getItem('empleados'));
   let flag = false;
-//  do {
-  let cedula = prompt('Numero de cedula del empleado que deseas eliminar?');
+  let cedula = parseInt(prompt('Numero de cedula del empleado que deseas eliminar?'));
   var object = 0;
   for (let i = 0; i < empleados.length; i++) {
     for (let emple in empleados[i]) {
-      if (empleados[i][emple] == cedula) {
+      if (empleados[i][emple] === cedula) {
         var object = i;
         flag = true;
         if (flag === true) {
@@ -340,11 +338,8 @@ function eliminar() {
   if (!flag) {
     alert(`El numero de cedula ${cedula} no se encuntra registrado`);
   }
-
-
   if (flag) {
     empleados.splice(object, 1);
-
   }
   localStorage.setItem('empleados', JSON.stringify(empleados));
   validateGestion();
@@ -363,12 +358,12 @@ function validateContinuar() {
     case 4:
       break;
     case 0:
+      alert('Bay');
       break;
     default:
       validateContinuar();
       break;
   }
-
 }
 function validate() {
   let option = config();
@@ -387,5 +382,4 @@ function validate() {
       break;
   }
 }
-
 validate();
