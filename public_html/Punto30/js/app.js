@@ -22,14 +22,23 @@ function configuration() {
 var configG = [];
 function name() {
   let name = prompt('Por favor digite el nombre de tu empresa');
-  validateConfiguration();
   global = {
     name
   };
-  configG = [
-    global
-  ];
+  configG = JSON.parse(localStorage.getItem('config'));
+
+  if (JSON.parse(localStorage.getItem('config')) === null) {
+    configG = [
+      global
+    ];
+  } else {
+    configG.push(global);
+  }
+
+
   localStorage.setItem('config', JSON.stringify(configG));
+  validateConfiguration();
+
   return configG;
 }
 function salaryMin() {
@@ -37,13 +46,14 @@ function salaryMin() {
   global = {
     salary
   };
-  if (localStorage.getItem('config') !== undefined) {
-    configG = JSON.parse(localStorage.getItem('config'));
-    configG.push(global);
-  } else {
+  configG = JSON.parse(localStorage.getItem('config'));
+
+  if (JSON.parse(localStorage.getItem('config')) === null) {
     configG = [
       global
     ];
+  } else {
+    configG.push(global);
   }
   localStorage.setItem('config', JSON.stringify(configG));
   validateConfiguration();
@@ -55,7 +65,14 @@ function minRetention() {
     mRetention
   };
   configG = JSON.parse(localStorage.getItem('config'));
-  config.push(global);
+
+  if (JSON.parse(localStorage.getItem('config')) === null) {
+    configG = [
+      global
+    ];
+  } else {
+    configG.push(global);
+  }
   localStorage.setItem('config', JSON.stringify(configG));
   validateConfiguration();
   return configG;
@@ -66,7 +83,14 @@ function percentage() {
     percentageR
   };
   configG = JSON.parse(localStorage.getItem('config'));
-  configG.push(global);
+
+  if (JSON.parse(localStorage.getItem('config')) === null) {
+    configG = [
+      global
+    ];
+  } else {
+    configG.push(global);
+  }
   localStorage.setItem('config', JSON.stringify(configG));
   validateConfiguration();
   return configG;
@@ -77,7 +101,14 @@ function maxSalary() {
     mSalary
   };
   configG = JSON.parse(localStorage.getItem('config'));
-  configG.push(global);
+
+  if (JSON.parse(localStorage.getItem('config')) === null) {
+    configG = [
+      global
+    ];
+  } else {
+    configG.push(global);
+  }
   localStorage.setItem('config', JSON.stringify(configG));
   validateConfiguration();
   return configG;
@@ -88,7 +119,14 @@ function aux() {
     aux
   };
   configG = JSON.parse(localStorage.getItem('config'));
-  configG.push(global);
+
+  if (JSON.parse(localStorage.getItem('config')) === null) {
+    configG = [
+      global
+    ];
+  } else {
+    configG.push(global);
+  }
   localStorage.setItem('config', JSON.stringify(configG));
   validateConfiguration();
   return configG;
@@ -99,7 +137,14 @@ function horasM() {
     h
   };
   configG = JSON.parse(localStorage.getItem('config'));
-  configG.push(global);
+
+  if (JSON.parse(localStorage.getItem('config')) === null) {
+    configG = [
+      global
+    ];
+  } else {
+    configG.push(global);
+  }
   localStorage.setItem('config', JSON.stringify(configG));
   validateConfiguration();
   return configG;
@@ -345,6 +390,30 @@ function eliminar() {
   validateGestion();
   return empleados;
 }
+
+function hoursLab() {
+  let hoursConfig = localStorage.getItem('config')
+  let daytimeHours = parseInt(prompt('Cuantas horas diurnas has trabajado'));
+  let nightHours = parseInt(prompt('Cuantas horas nocturnas has trabajado'));
+  let daytimeSundayHours = parseInt(prompt('Cuantas horas dominicales diurnas has trabajado'));
+  let nightSundayHours = parseInt(prompt('Cuantas horas dominicales nocturnas has trabajado'));
+  let daytimeOvertime = parseInt(prompt('Cuantas horas extras diurnas has trabajado'));
+  let nightOvertime = parseInt(prompt('Cuantas horas extras nocturnas has trabajado'));
+  let daytimeExtraSundayHours = parseInt(prompt('Cuantas horas dominicales extra diurnas has trabajado'));
+  let nightExtraSundayHours = parseInt(prompt('Cuantas horas dominicales extra nocturnas has trabajado'));
+
+  let personal = {
+    daytimeHours,
+    nightHours,
+    daytimeSundayHours,
+    nightSundayHours,
+    daytimeOvertime,
+    nightOvertime,
+    daytimeExtraSundayHours,
+    nightExtraSundayHours
+  };
+}
+
 function validateContinuar() {
   let option = continuar();
   switch (option) {

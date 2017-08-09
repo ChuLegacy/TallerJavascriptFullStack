@@ -21,12 +21,14 @@ function ingresum() {
     code
   };
   if (localStorage.length === 0) {
-    arrangement = [
-      data = {
-        name,
-        code
-      }
-    ];
+//    arrangement = [
+//      data = {
+//        name,
+//        code
+//      }
+//    ];
+    arrangement.push(data);
+
   } else {
     arrangement.push(data);
   }
