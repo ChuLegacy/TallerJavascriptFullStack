@@ -384,125 +384,133 @@ function eliminar() {
 }
 
 function hoursLab() {
-  var day = 0;
+  if (JSON.parse(localStorage.getItem('config')) === null || JSON.parse(localStorage.getItem('empleados')) === null) {
+    alert('No tienes configurado tu sistema o no tienes empleados registrados');
+    validate();
+  } else {
+    var day = 0;
 //  Obtener los dias del mes actual
-  let months = new Date();
-  switch (months.getMonth()) {
-    case 0:
-      day = 31;
-      break;
-    case 1:
-      day = 28;
-      break;
-    case 2:
-      day = 31;
-      break;
-    case 3:
-      day = 30;
-      break;
-    case 4:
-      day = 31;
-      break;
-    case 5:
-      day = 30;
-      break;
-    case 6:
-      day = 31;
-      break;
-    case 7:
-      day = 31;
-      break;
-    case 8:
-      day = 30;
-      break;
-    case 9:
-      day = 31;
-      break;
-    case 10:
-      day = 30;
-      break;
-    case 11:
-      day = 31;
-      break;
-  }
+    let months = new Date();
+    switch (months.getMonth()) {
+      case 0:
+        day = 31;
+        break;
+      case 1:
+        day = 28;
+        break;
+      case 2:
+        day = 31;
+        break;
+      case 3:
+        day = 30;
+        break;
+      case 4:
+        day = 31;
+        break;
+      case 5:
+        day = 30;
+        break;
+      case 6:
+        day = 31;
+        break;
+      case 7:
+        day = 31;
+        break;
+      case 8:
+        day = 30;
+        break;
+      case 9:
+        day = 31;
+        break;
+      case 10:
+        day = 30;
+        break;
+      case 11:
+        day = 31;
+        break;
+    }
 //  obtener las horas laborables de la empresa desde el localStorage
-  var hoursMin = 0;
-  let hoursConfig = JSON.parse(localStorage.getItem('config'));
-  hoursConfig.forEach((e) => {
-    for (i in e) {
-      if (i === 'h') {
-        hoursMin = e[i];
+    var hoursMin = 0;
+    let hoursConfig = JSON.parse(localStorage.getItem('config'));
+    hoursConfig.forEach((e) => {
+      for (i in e) {
+        if (i === 'h') {
+          var hoursMin = e[i];
+        }
       }
-    }
-  });
+    });
 //  Obtener el nombre de la empresa desde el localStorage
-  let names = '';
-  JSON.parse(localStorage.getItem('config')).forEach((e) => {
-    if (e.name !== undefined) {
-      names = e.name;
-    }
-  });
-  let find = parseInt(prompt('Cedula del empleado a registrar las horas?'));
-  let emple = JSON.parse(localStorage.getItem('empleados'));
-  var tmp = 0;
-  emple.forEach((e) => {
-    if (e.cedula == find) {
-      tmp++;
-      console.log('');
-    }
-  });
-  if (tmp !== 0) {
-    let i = 0;
-    do {
-      if (i !== 0) {
-        alert(`Has ingresado mas horas de las horas configuradas previamente por tu empresa ${names}`);
+    let names = '';
+    JSON.parse(localStorage.getItem('config')).forEach((e) => {
+      if (e.name !== undefined) {
+        names = e.name;
       }
-      i++;
-      let daytimeHours = parseInt(prompt('Cuantas horas diurnas has trabajado'));
-    } while (daytimeHours > hoursMin);
-    i = 0;
-    do {
-      if (i !== 0) {
-        alert(`Has ingresado mas horas de las horas configuradas previamente por tu empresa ${names}`);
-      }
-      i++;
-      let nightHours = parseInt(prompt('Cuantas horas nocturnas has trabajado'));
-    } while ((nightHours > hoursMin) || (daytimeHours + nightHours > hoursMin));
-    i = 0;
-    do {
-      if (i !== 0) {
-        alert(`Has ingresado mas horas de las horas configuradas previamente por tu empresa ${names}`);
-      }
-      i++;
-      let daytimeSundayHours = parseInt(prompt('Cuantas horas dominicales diurnas has trabajado'));
-    } while ((daytimeSundayHours > hoursMin) || (daytimeHours + daytimeSundayHours > hoursMin) || (nightHours + daytimeSundayHours > hoursMin));
-    i = 0;
-    do {
-      if (i !== 0) {
-        alert(`Has ingresado mas horas de las horas configuradas previamente por tu empresa ${names}`);
-      }
-      i++;
-      let nightSundayHours = parseInt(prompt('Cuantas horas dominicales nocturnas has trabajado'));
-    } while ((nightSundayHours > hoursMin) || (daytimeHours + nightSundayHours > hoursMin) || (nightHours + nightSundayHours > hoursMin) || (daytimeSundayHours + nightSundayHours > hoursMin));
+    });
+    let find = parseInt(prompt('Cedula del empleado a registrar las horas?'));
+    let emple = JSON.parse(localStorage.getItem('empleados'));
+    var tmp = 0;
+    emple.forEach((e) => {
+      if (e.cedula == find) {
+        tmp++;
+        if (tmp !== 0) {
+          let i = 0;
+          do {
+            if (i !== 0) {
+              alert(`Has ingresado mas horas de las horas configuradas previamente por tu empresa ${names}`);
+            }
+            i++;
+            let daytimeHours = parseInt(prompt('Cuantas horas diurnas has trabajado'));
+            console.log(daytimeHours);
+            console.log(hoursMin);
+          } while (daytimeHours > hoursMin);
+          i = 0;
+          do {
+            if (i !== 0) {
+              alert(`Has ingresado mas horas de las horas configuradas previamente por tu empresa ${names}`);
+            }
+            i++;
+            let nightHours = parseInt(prompt('Cuantas horas nocturnas has trabajado'));
+          } while ((nightHours > hoursMin) || (daytimeHours + nightHours > hoursMin));
+          i = 0;
+          do {
+            if (i !== 0) {
+              alert(`Has ingresado mas horas de las horas configuradas previamente por tu empresa ${names}`);
+            }
+            i++;
+            let daytimeSundayHours = parseInt(prompt('Cuantas horas dominicales diurnas has trabajado'));
+          } while ((daytimeSundayHours > hoursMin) || (daytimeHours + daytimeSundayHours > hoursMin) || (nightHours + daytimeSundayHours > hoursMin));
+          i = 0;
+          do {
+            if (i !== 0) {
+              alert(`Has ingresado mas horas de las horas configuradas previamente por tu empresa ${names}`);
+            }
+            i++;
+            let nightSundayHours = parseInt(prompt('Cuantas horas dominicales nocturnas has trabajado'));
+          } while ((nightSundayHours > hoursMin) || (daytimeHours + nightSundayHours > hoursMin) || (nightHours + nightSundayHours > hoursMin) || (daytimeSundayHours + nightSundayHours > hoursMin));
 
-    let daytimeOvertime = parseInt(prompt('Cuantas horas extras diurnas has trabajado'));
-    let nightOvertime = parseInt(prompt('Cuantas horas extras nocturnas has trabajado'));
-    let daytimeExtraSundayHours = parseInt(prompt('Cuantas horas dominicales extra diurnas has trabajado'));
-    let nightExtraSundayHours = parseInt(prompt('Cuantas horas dominicales extra nocturnas has trabajado'));
+          let daytimeOvertime = parseInt(prompt('Cuantas horas extras diurnas has trabajado'));
+          let nightOvertime = parseInt(prompt('Cuantas horas extras nocturnas has trabajado'));
+          let daytimeExtraSundayHours = parseInt(prompt('Cuantas horas dominicales extra diurnas has trabajado'));
+          let nightExtraSundayHours = parseInt(prompt('Cuantas horas dominicales extra nocturnas has trabajado'));
 
-    let personal = {
-      daytimeHours,
-      nightHours,
-      daytimeSundayHours,
-      nightSundayHours,
-      daytimeOvertime,
-      nightOvertime,
-      daytimeExtraSundayHours,
-      nightExtraSundayHours
-    };
+          let personal = {
+            daytimeHours,
+            nightHours,
+            daytimeSundayHours,
+            nightSundayHours,
+            daytimeOvertime,
+            nightOvertime,
+            daytimeExtraSundayHours,
+            nightExtraSundayHours
+          };
+        }
+      } else {
+        alert('El empleado no se encuentra registrado');
+        validateContinuar();
+      }
+    });
+
   }
-
-
 }
 
 function validateContinuar() {
@@ -544,4 +552,3 @@ function validate() {
   }
 }
 validate();
-
