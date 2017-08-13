@@ -1373,7 +1373,7 @@ function validatecontinuar2() {
       pago2();
       break;
     case 0:
-      alert('Adios');
+      alert('Bay');
       break;
     default:
       validatecontinuar2();
