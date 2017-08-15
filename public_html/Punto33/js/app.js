@@ -74,41 +74,42 @@ class Persona {
   }
   perf() {
     let description = prompt('Write a professional profile description');
-    let profile = {
+    this.profile = {
       description
     };
     return this.profile;
   }
   prints() {
-  var info = '';
-  	for(let person in this.data_personal){
-  		info += this.data_personal[person] + " ";
-  	}
-  	info !== '' ? console.log(`
+    console.clear();
+    var info = '';
+    for (let person in this.data_personal) {
+      info += this.data_personal[person] + " ";
+    }
+    info !== '' ? console.log(`
   		Personal Information
   		${info}`) : '';
 
-  var inf = '';
-  	for(let family in this.ref_family){
-  		inf += this.ref_family[family] + " ";
-  	}
-  	inf !== '' ? console.log(`
+    var inf = '';
+    for (let family in this.ref_family) {
+      inf += this.ref_family[family] + " ";
+    }
+    inf !== '' ? console.log(`
   		Family reference
   		${inf}`) : '';
 
-  var i = '';
-  	for(let Labor in this.ref_lab){
-  		i += this.ref_lab[Labor] + " ";
-  	}
-  	i !== '' ? console.log(`
+    var i = '';
+    for (let Labor in this.ref_lab) {
+      i += this.ref_lab[Labor] + " ";
+    }
+    i !== '' ? console.log(`
   		Labor reference
   		${i}`) : '';
 
-  var fo = '';
-  	for(let Description in this.profile){
-  		fo += this.profile[Description] + " ";
-  	}
-  	fo !== '' ? console.log(`
+    var fo = '';
+    for (let description in this.profile) {
+      fo += this.profile[description] + " ";
+    }
+    fo !== '' ? console.log(`
   		Description of professional profile
   		${fo}`) : '';
   }
