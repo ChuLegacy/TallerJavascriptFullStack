@@ -1414,4 +1414,3 @@ function validate2() {
       break;
   }
 }
-validate2();

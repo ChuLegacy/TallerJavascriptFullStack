@@ -15,24 +15,20 @@ var arrangement = [];
 function ingresum() {
   let code = parseInt(prompt('What is your new product code?'));
   let name = prompt('What is the name of your new product');
+  let price = prompt('What is the price of your new product');
 
   let data = {
     name,
-    code
+    code,
+    price
   };
   if (localStorage.length === 0) {
-//    arrangement = [
-//      data = {
-//        name,
-//        code
-//      }
-//    ];
     arrangement.push(data);
 
   } else {
     arrangement.push(data);
   }
-  console.log(typeof (arrangement));
+//  console.log(typeof (arrangement));
   localStorage.setItem('data', JSON.stringify(arrangement));
 
   validate();
