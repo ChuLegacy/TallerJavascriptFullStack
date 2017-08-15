@@ -536,7 +536,7 @@ function nomina() {
             auxTransport = e[i];
             break;
           case 'mSalary':
-            mSalary = e[i]
+            mSalary = e[i];
             break;
         }
       }
@@ -676,7 +676,7 @@ function validate() {
           validate();
           break;
         case 2:
-          validate2();
+          config2();
           break;
         case 3:
           alert('Adios');

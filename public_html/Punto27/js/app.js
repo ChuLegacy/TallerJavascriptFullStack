@@ -18,7 +18,7 @@ var person = {
   city: ''
 };
 function personal() {
-  person.name = prompt('What\'s your name?');
+  person.name = prompt("What\'s your name?");
   person.last = prompt('What is your last name?');
   person.nationality = prompt('What is your nationality?');
   person.city = prompt('What is your city?');
