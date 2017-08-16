@@ -1,64 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-	<meta charset="UTF-8">
-	<title>Punto40</title>
-	<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
-	<link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-	<main class="container">
-		<form class="d-flex flex-column m-5">
-			<div class="row form-group justify-content-center">
-				<label class="col-4 col-form-label">Write Your Name</label>
-				<div class="col-4">
-					<input type="text" class="form-control">
-				</div>
-			</div>
+  <head>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta charset="UTF-8">
+    <title>Punto40</title>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    <main class="container">
+      <form class="d-flex flex-column m-5" id="form">
+        <div class="row form-group justify-content-center ">
+          <label class="col-4 col-form-label">Write Your Name</label>
+          <div class="col-8">
+            <input type="text" class="form-control" id="name" required>
+          </div>
+        </div>
 
-			<div class="row form-group justify-content-center">
-				<label class="col-4 col-form-label">My Number Of</label>
-				<div class="col-2">
-					<select id="number" class="form-control">
-						<option value="1">Cedula</option>
-						<option value="2">Pasaporte</option>
-						<option value="3">Other</option>
-					</select>
-				</div>
-				<label class="col-2 col-form-label text-right">Es</label>
-				<div class="col-4">
-					<input type="number" class="form-control">
-				</div>
-			</div>
+        <div class="row form-group justify-content-center">
+          <label class="col-2 col-form-label">My Number Of</label>
+          <div class="col-2">
+            <select id="type" class="form-control" required>
+              <option value="1">Cedula</option>
+              <option value="2">Pasaporte</option>
+              <option value="3">Other</option>
+            </select>
+          </div>
+          <label class="col-2 col-form-label text-right">Es</label>
+          <div class="col-6">
+            <input type="number" class="form-control" id="id" required>
+          </div>
+        </div>
 
-			<div class="row form-group justify-content-center">
-				<label class="col-4 col-form-label">Biological Gender</label>
-				<div class="col-4">
-					<select id="gender" class="form-control">
-						<option value="1">Male</option>
-						<option value="2">Female</option>
-					</select>
-				</div>
-			</div>
-			<div class="row form-group justify-conetnt-center">
-				<label class="col 4 col-form-label">My height is:</label>
-				<div class="col-4">
-					<input type="number" class="form-control" min="0">
-				</div>
-			</div>
+        <div class="row form-group justify-content-center">
+          <label class="col-2 col-form-label">Biological Gender</label>
+          <div class="col-10">
+            <select id="gender" class="form-control" required>
+              <option value="1">Male</option>
+              <option value="2">Female</option>
+            </select>
+          </div>
+        </div>
+        <div class="row form-group justify-conetnt-center">
+          <label class="col 4 col-form-label">My height is:</label>
+          <div class="col-4">
+            <input type="number" class="form-control" min="0" id="height" required>
+          </div>
+        </div>
 
-			<div class="row form-group justify-content-center">
-				<label class="col-4 col-form-label">Is it true that I live in Cartago?</label>
-				<div class="col-4">
-				<input type="checkbox" id="live" class="form-control">
-				</div>
-			</div>
-		</form>
-	</main>
-	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
-	<script src="../node_modules/tether/dist/js/tether.min.js"></script>
-	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-	<script src="./js/app.js"></script>
-</body>
+        <div class="row form-check-inline justify-content-center">
+          <label class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="live">
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">Is it true that I live in Cartago?</span>
+          </label>
+        </div>
+        <input type="submit" value="Send" class="btn btn-lg btn-success" id="send">
+      </form>
+      <div class="modal fade" id="modal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title">jquery</h1>
+            </div>
+            <div class="modal-body">
+              <p id="text"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/tether/dist/js/tether.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="./js/app.js"></script>
+  </body>
 </html>
