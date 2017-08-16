@@ -1,5 +1,9 @@
 $(() => {
-  $('#enviar').click(() => {
-    console.log(`Hola, soy ${$('#name').val()} y me siento feliz de estar aprendiendo JavaScript usando jQuery`);
-  });
+	$('#form').submit( (e) => {
+		e.preventDefault();
+		let name = 	"Hello, I am " + $('#name').val() + " and I feel happy To learn JavaScript using jQuery ";
+		$('#send').attr('data-content', name);
+		$('[data-toggle="popover"]').popover('show');
+	})
 });
+
