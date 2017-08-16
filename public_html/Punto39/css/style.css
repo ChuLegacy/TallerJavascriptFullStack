@@ -1,7 +1,6 @@
 .row{
-	height: 100vh;
-	/* background: red; */
+  height: 100vh;
 }
 .btn{
-	cursor: pointer;
+  cursor: pointer;
 }
