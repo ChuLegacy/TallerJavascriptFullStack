@@ -461,13 +461,14 @@ function hoursLab() {
       // Saber cuanto es el precio hora del trabajador
       let pHours = (salary / hoursMin);
       let hoursDay = pHours;
-      let hoursNight = (pHours * 35) / 100;
-      let daySundayHours = (pHours * 75) / 100;
-      let sundayNightHours = (pHours * 110) / 100;
-      let hoursExtraDay = (pHours * 25) / 100;
-      let hoursExtraNight = (pHours * 75) / 100;
-      let hoursSundayExtraDay = (pHours * 100) / 100;
-      let hoursSundayExtraNight = (pHours * 150) / 100;
+      let hoursNight = ((pHours * 35) / 100) + pHours;
+      let daySundayHours = ((pHours * 75) / 100) + pHours;
+      let sundayNightHours = ((pHours * 110) / 100) + pHours;
+      let hoursExtraDay = ((pHours * 25) / 100) + pHours;
+      let hoursExtraNight = ((pHours * 75) / 100) + pHours;
+      let hoursSundayExtraDay = ((pHours * 100) / 100) + pHours;
+      let hoursSundayExtraNight = ((pHours * 150) / 100) + pHours;
+
       // Objeto con las horas trabajadas
       let hoursLaborable = {
         daytimeHours,
@@ -553,6 +554,15 @@ function nomina() {
         }
       }
     }
+    var salaryBaseEmple;
+    salaryBase = JSON.parse(localStorage.getItem('empleados'));
+    salaryBase.forEach((e) => {
+      for (let empleade in e) {
+        if (empleade === 'salario') {
+          salaryBaseEmple = e[empleade];
+        }
+      }
+    });
     var nominas = [];
     console.log(` -- Cedula -- Cargo -- Total A Pagar --`);
     empleados.forEach((e) => {
@@ -567,14 +577,14 @@ function nomina() {
           array.forEach((i) => {
             total += i;
           });
-          if (total > (salary * salaryRetention)) {
+          if (total >= (salary * salaryRetention) && (salaryBaseEmple <= (salary * salaryRetention))) {
             let subs = total * percentageRetention / 100;
             total -= subs;
           }
-          if (total <= (salary * mSalary)) {
+          if (total <= (salary * mSalary) && (salaryBaseEmple <= (salary * mSalary))) {
             total += auxTransport;
           }
-          if (total <= (salary * 1)) {
+          if (total <= (salary * 1) && (salaryBaseEmple <= (salary * 1))) {
             let alimentation = (salary * 20) / 100;
             total += alimentation;
           }
