@@ -46,7 +46,7 @@ function name() {
   return configG;
 }
 function salaryMin() {
-  let salary = parseInt(prompt('Por favir digite el salario de tu empresa'));
+  let salary = parseInt(prompt('Por favor digite el salario de tu empresa'));
   global = {
     salary
   };
@@ -178,6 +178,7 @@ function validateConfiguration() {
       alert('Bay');
       break;
     default:
+      alert('Seleccione una opcion correcta');
       validateConfiguration();
       break;
   }
@@ -241,6 +242,8 @@ function validateGestion() {
       alert('Bay');
       break;
     default:
+      alert('Seleccione una opcion correcta');
+      validateGestion();
       break;
   }
 }
@@ -251,15 +254,26 @@ function add() {
     var cedula = prompt(`Cedula del nuevo empleado?`);
   } else {
     let flag = false;
+    let cont = 0;
     do {
-      var cedula = parseInt(prompt(`Cedula del nuevo empleado?`));
-      for (let config of empleados) {
-        for (let e in config) {
-          if (config[e] === cedula) {
-            flag = config[e];
+      cont++;
+      switch (cont) {
+        case 1:
+          var cedula = parseInt(prompt(`Cedula del nuevo empleado?`));
+          for (let config of empleados) {
+            for (let e in config) {
+              if (config[e] == cedula) {
+                flag = config[e];
+              }
+            }
           }
-        }
+          break;
+        case 2:
+          alert('El empleado ya esta registrado');
+          validateGestion();
+          break;
       }
+
     } while (cedula === flag);
   }
   let nombre = prompt(`Nombre del nuevo empleado?`);
@@ -298,101 +312,118 @@ function add() {
 }
 function edit() {
   let empleados = JSON.parse(localStorage.getItem('empleados'));
-  var object = 0;
-  var flag = false;
-  do {
-    var cedula = parseInt(prompt(`Por favor ingrese el numero de cedula?`));
-    for (i = 0; i < empleados.length; i++) {
-      for (let datas in empleados[i]) {
-        if (empleados[i][datas] == cedula) {
-          flag = true;
-          object = i;
+  if (empleados === null) {
+    alert('No tienes empleados registrados');
+    validateGestion();
+  } else {
+    var object = 0;
+    var flag = false;
+    var c = 0;
+    do {
+      c++;
+      if (c === 2) {
+        alert('NUmero de cedula incorrecto');
+        validateGestion();
+      }
+
+      var cedula = parseInt(prompt(`Por favor ingrese el numero de cedula?`));
+      for (i = 0; i < empleados.length; i++) {
+        for (let datas in empleados[i]) {
+          if (empleados[i][datas] == cedula) {
+            flag = true;
+            object = i;
+          }
         }
       }
+    } while (flag === false);
+    if (empleados === null) {
+      var cedula = parseInt(prompt(`Nueva cedula del empleado?`));
+    } else {
+      let flag = false;
+      do {
+        var cedula = parseInt(prompt(`Nueva cedula del empleado?`));
+        for (let config of empleados) {
+          for (let e in config) {
+            if (config[e] === cedula) {
+              flag = config[e];
+            }
+          }
+        }
+      } while (cedula === flag);
     }
-  } while (flag === false);
-  if (empleados === null) {
-    var cedula = parseInt(prompt(`Cedula del nuevo empleado?`));
-  } else {
-    let flag = false;
+    let nombre = prompt(`Nuevo nombre del empleado?`);
+    let apellido = prompt(`Nuevo apellido del empleado?`);
+    let cargo = prompt(`Nuevo Cargo del empleado?`);
+    let configG = JSON.parse(localStorage.getItem('config'));
+    flag = false;
     do {
-      var cedula = parseInt(prompt(`Cedula del nuevo empleado?`));
-      for (let config of empleados) {
-        for (let e in config) {
-          if (config[e] === cedula) {
+      var salario = parseInt(prompt(`Nuevo Salario del empleado?`));
+      for (config of configG) {
+        for (e in config) {
+          if (e === 'salary') {
             flag = config[e];
           }
         }
       }
-    } while (cedula === flag);
+    } while (salario < flag);
+    empleados = JSON.parse(localStorage.getItem('empleados'));
+    let personal = {
+      cedula,
+      nombre,
+      apellido,
+      cargo,
+      salario
+    };
+    empleados[object] = personal;
+    localStorage.setItem('empleados', JSON.stringify(empleados));
+    validateGestion();
+    return empleados;
   }
-  let nombre = prompt(`Nombre del nuevo empleado?`);
-  let apellido = prompt(`Apellido del nuevo empleado?`);
-  let cargo = prompt(`Cargo del nuevo empleado?`);
-  let configG = JSON.parse(localStorage.getItem('config'));
-  flag = false;
-  do {
-    var salario = parseInt(prompt(`Salario del nuevo empleado?`));
-    for (config of configG) {
-      for (e in config) {
-        if (e === 'salary') {
-          flag = config[e];
-        }
-      }
-    }
-  } while (salario < flag);
-  empleados = JSON.parse(localStorage.getItem('empleados'));
-  let personal = {
-    cedula,
-    nombre,
-    apellido,
-    cargo,
-    salario
-  };
-  empleados[object] = personal;
-  localStorage.setItem('empleados', JSON.stringify(empleados));
-  validateGestion();
-  return empleados;
 }
 function eliminar() {
   let empleados = JSON.parse(localStorage.getItem('empleados'));
   let flag = false;
-  let cedula = parseInt(prompt('Numero de cedula del empleado que deseas eliminar?'));
-  var object = 0;
-  for (let i = 0; i < empleados.length; i++) {
-    for (let emple in empleados[i]) {
-      if (empleados[i][emple] === cedula) {
-        var object = i;
-        flag = true;
-        if (flag === true) {
-          var con = confirm(`Deseas Eliminar a ${empleados[object].nombre} ${empleados[object].apellido}`);
-          if (con) {
-            flag = true;
-          } else {
-            flag = false;
-            validateGestion();
-            break;
+  if (empleados === null) {
+    alert('No hay empleados registrados');
+    validateGestion();
+  } else {
+    let cedula = parseInt(prompt('Numero de cedula del empleado que deseas eliminar?'));
+    var object = 0;
+    for (let i = 0; i < empleados.length; i++) {
+      for (let emple in empleados[i]) {
+        if (empleados[i][emple] === cedula) {
+          var object = i;
+          flag = true;
+          if (flag === true) {
+            var con = confirm(`Deseas Eliminar a ${empleados[object].nombre} ${empleados[object].apellido}`);
+            if (con) {
+              flag = true;
+            } else {
+              flag = false;
+              validateGestion();
+              break;
+            }
           }
         }
       }
     }
+    if (!flag) {
+      alert(`El numero de cedula ${cedula} no se encuentra registrado`);
+    }
+    if (flag) {
+      empleados.splice(object, 1);
+    }
+    localStorage.setItem('empleados', JSON.stringify(empleados));
+    validateGestion();
+    return empleados;
   }
-  if (!flag) {
-    alert(`El numero de cedula ${cedula} no se encuntra registrado`);
-  }
-  if (flag) {
-    empleados.splice(object, 1);
-  }
-  localStorage.setItem('empleados', JSON.stringify(empleados));
-  validateGestion();
-  return empleados;
 }
 function hoursLab() {
   if (JSON.parse(localStorage.getItem('config')) === null || JSON.parse(localStorage.getItem('empleados')) === null) {
-    alert('No tienes configurado tu sistema o no tienes empleados registrados');
-    validate();
+    alert('No tienes empleados registrados');
+    validateContinuar();
   } else {
-//  obtener las horas laborables de la empresa desde el localStorage
+    //  obtener las horas laborables de la empresa desde el localStorage
     var hoursMin = 0;
     let hoursConfig = JSON.parse(localStorage.getItem('config'));
     hoursConfig.forEach((e) => {
@@ -402,7 +433,7 @@ function hoursLab() {
         }
       }
     });
-//  Obtener el nombre de la empresa desde el localStorage
+    //  Obtener el nombre de la empresa desde el localStorage
     let names = '';
     JSON.parse(localStorage.getItem('config')).forEach((e) => {
       if (e.name !== undefined) {
@@ -513,8 +544,8 @@ function hoursLab() {
 }
 function nomina() {
   if ((JSON.parse(localStorage.getItem('config')) === null) || (JSON.parse(localStorage.getItem('empleados')) === null) || (JSON.parse(localStorage.getItem('horasLaboradas')) === null)) {
-    alert('No tienes configurado tu sistema, no tienes empleados registrados o no tienes horas registradas');
-    validate();
+    alert('No tienes empleados registrados o no tienes horas registradas');
+    validateContinuar();
   } else {
     var auxTransport = JSON.parse(localStorage.getItem('config'));
     var salary = 0;
@@ -616,10 +647,16 @@ function nomina() {
 function pago() {
   let empleados = JSON.parse(localStorage.getItem('empleados'));
   var config = JSON.parse(localStorage.getItem('config'));
+  var nomin = JSON.parse(localStorage.getItem('nomina'));
+
   if (empleados === null) {
     alert('No hay empleados registrados');
     validateContinuar();
   } else {
+    if (nomin === null) {
+      alert('Debe primero generar la nomina de su empresa');
+      validateContinuar();
+    }
     let find = parseInt(prompt('Digite la cedula para el comprobante de pago?'));
     var tmp = 0;
     var name = '';
@@ -635,7 +672,7 @@ function pago() {
           if (e.cedula == j.cedula) {
             paguis = j.tot;
           }
-        })
+        });
       }
     });
     if (tmp === 0) {
@@ -672,6 +709,7 @@ function validateContinuar() {
       alert('Adios');
       break;
     default:
+      alert('Seleccione una opcion correcta');
       validateContinuar();
       break;
   }
@@ -692,6 +730,7 @@ function validate() {
           alert('Adios');
           break;
         default:
+          alert('Seleccione una opcion correcta');
           validate();
           break;
       }
@@ -700,12 +739,18 @@ function validate() {
       validateConfiguration();
       break;
     case 3:
-      validateContinuar();
+      if (JSON.parse(localStorage.getItem('config'))) {
+        validateContinuar();
+      } else {
+        alert('No tienes Configurado tu sistema');
+        validate();
+      }
       break;
     case 0:
       alert('Adios');
       break;
     default:
+      alert('Seleccione una opcion correcta');
       validate();
       break;
   }
@@ -725,7 +770,7 @@ function config2() {
 1. Select language
 2. Configure
 3. Continue
-0. Departure`));
+  0. Departure`));
   return option;
 }
 function idioma2() {
@@ -733,7 +778,7 @@ function idioma2() {
 Select the software language
 1. Spanish
 2. English
-0. Departure`));
+  0. Departure`));
   return option;
 }
 function configuration2() {
@@ -746,19 +791,17 @@ function configuration2() {
 6. How much does transport aid cost?
 7. Number of hours of work per month
 8. Back
-0. Quit the program`));
+  0. Quit the program`));
   return option;
 }
 var configG = [];
 function name2() {
   let name = prompt('Enter the name of your company');
-  global = {
-    name
+  global = {name
   };
   configG = JSON.parse(localStorage.getItem('config'));
   if (JSON.parse(localStorage.getItem('config')) === null) {
-    configG = [
-      global
+    configG = [global
     ];
   } else {
     configG.push(global);
@@ -769,13 +812,11 @@ function name2() {
 }
 function salaryMin2() {
   let salary = parseInt(prompt("Enter your company's salary"));
-  global = {
-    salary
+  global = {salary
   };
   configG = JSON.parse(localStorage.getItem('config'));
   if (JSON.parse(localStorage.getItem('config')) === null) {
-    configG = [
-      global
+    configG = [global
     ];
   } else {
     configG.push(global);
@@ -786,13 +827,11 @@ function salaryMin2() {
 }
 function minRetention2() {
   let mRetention = parseInt(prompt('How many minimum wages does the withholding tax charge?'));
-  global = {
-    mRetention
+  global = {mRetention
   };
   configG = JSON.parse(localStorage.getItem('config'));
   if (JSON.parse(localStorage.getItem('config')) === null) {
-    configG = [
-      global
+    configG = [global
     ];
   } else {
     configG.push(global);
@@ -803,13 +842,11 @@ function minRetention2() {
 }
 function percentage2() {
   let percentageR = parseInt(prompt('Percentage withholding at source? (%)'));
-  global = {
-    percentageR
+  global = {percentageR
   };
   configG = JSON.parse(localStorage.getItem('config'));
   if (JSON.parse(localStorage.getItem('config')) === null) {
-    configG = [
-      global
+    configG = [global
     ];
   } else {
     configG.push(global);
@@ -820,13 +857,11 @@ function percentage2() {
 }
 function maxSalary2() {
   let mSalary = parseInt(prompt('How many minimum wages do you need to pay for transport aid?'));
-  global = {
-    mSalary
+  global = {mSalary
   };
   configG = JSON.parse(localStorage.getItem('config'));
   if (JSON.parse(localStorage.getItem('config')) === null) {
-    configG = [
-      global
+    configG = [global
     ];
   } else {
     configG.push(global);
@@ -837,13 +872,11 @@ function maxSalary2() {
 }
 function aux2() {
   let aux = parseInt(prompt('How much does transport help cost?'));
-  global = {
-    aux
+  global = {aux
   };
   configG = JSON.parse(localStorage.getItem('config'));
   if (JSON.parse(localStorage.getItem('config')) === null) {
-    configG = [
-      global
+    configG = [global
     ];
   } else {
     configG.push(global);
@@ -854,13 +887,11 @@ function aux2() {
 }
 function horasM2() {
   let h = parseInt(prompt('Number of hours of work per month?'));
-  global = {
-    h
+  global = {h
   };
   configG = JSON.parse(localStorage.getItem('config'));
   if (JSON.parse(localStorage.getItem('config')) === null) {
-    configG = [
-      global
+    configG = [global
     ];
   } else {
     configG.push(global);
@@ -910,7 +941,7 @@ function continuar2() {
 2. Record of hours worked
 3. Generate payroll
 4. Print proof of payment
-0. Quit the program`));
+  0. Quit the program`));
   return option;
 }
 function gestionEmpleados2() {
@@ -919,7 +950,7 @@ function gestionEmpleados2() {
 2. Modify
 3. Delete
 4. Back
-0. Quit the program`));
+  0. Quit the program`));
   console.clear();
   console.log(`+----------------------------------------------------------------------------------+`);
   console.log(`|-----Identification Card-----|-----Name-----|-----Surnames-----|-----Position-----|`);
@@ -928,9 +959,7 @@ function gestionEmpleados2() {
   if (personal !== null) {
     let ant = 0;
     for (let i = 0; i <= personal.length - 1; i++) {
-
       if (personal[i + 1] !== undefined) {
-
         if (personal[i].cedula > personal[i + 1].cedula) {
           ant = personal[i];
           personal[i] = personal[i + 1];
@@ -1002,16 +1031,14 @@ function add2() {
     }
   } while (salario < flag);
   empleados = JSON.parse(localStorage.getItem('empleados'));
-  let personal = {
-    cedula,
+  let personal = {cedula,
     nombre,
     apellido,
     cargo,
     salario
   };
   if (empleados === null) {
-    empleados = [
-      personal
+    empleados = [personal
     ];
   } else {
     empleados.push(personal);
@@ -1066,8 +1093,7 @@ function edit2() {
     }
   } while (salario < flag);
   empleados = JSON.parse(localStorage.getItem('empleados'));
-  let personal = {
-    cedula,
+  let personal = {cedula,
     nombre,
     apellido,
     cargo,
@@ -1115,8 +1141,7 @@ function hoursLab2() {
   if (JSON.parse(localStorage.getItem('config')) === null || JSON.parse(localStorage.getItem('empleados')) === null) {
     alert('You have not set up your system or have no registered employees');
     validate2();
-  } else {
-//  obtener las horas laborables de la empresa desde el localStorage
+  } else {     //  obtener las horas laborables de la empresa desde el localStorage
     var hoursMin = 0;
     let hoursConfig = JSON.parse(localStorage.getItem('config'));
     hoursConfig.forEach((e) => {
@@ -1126,7 +1151,7 @@ function hoursLab2() {
         }
       }
     });
-//  Obtener el nombre de la empresa desde el localStorage
+    //  Obtener el nombre de la empresa desde el localStorage
     let names = '';
     JSON.parse(localStorage.getItem('config')).forEach((e) => {
       if (e.name !== undefined) {
@@ -1193,8 +1218,7 @@ function hoursLab2() {
       let hoursSundayExtraDay = (pHours * 100) / 100;
       let hoursSundayExtraNight = (pHours * 150) / 100;
       // Objeto con las horas trabajadas
-      let hoursLaborable = {
-        daytimeHours,
+      let hoursLaborable = {daytimeHours,
         nightHours,
         daytimeSundayHours,
         nightSundayHours,
@@ -1204,8 +1228,7 @@ function hoursLab2() {
         nightExtraSundayHours
       };
       // Objeto con el valor de las horas laboradas
-      let vHoursLab = {
-        'Horas Diurnas': hoursDay * daytimeHours,
+      let vHoursLab = {'Horas Diurnas': hoursDay * daytimeHours,
         'Horas Nocturnas': hoursNight * nightHours,
         'Horas Dominicales Diurnas': daySundayHours * daytimeSundayHours,
         'Horas Dominicales Nocturnas': sundayNightHours * nightSundayHours,
@@ -1214,8 +1237,7 @@ function hoursLab2() {
         'Horas Dominicales Extra Diurnas': hoursSundayExtraDay * daytimeExtraSundayHours,
         'Horas Dominicales Extra Nocturnas': hoursSundayExtraNight * nightExtraSundayHours
       };
-      let hoursLaborales = {
-        id,
+      let hoursLaborales = {id,
         hoursLaborable,
         vHoursLab
       };
@@ -1270,7 +1292,6 @@ function nomina2() {
     let ant = 0;
     for (let i = 0; i <= empleados.length - 1; i++) {
       if (empleados[i + 1] !== undefined) {
-
         if (empleados[i].cedula > empleados[i + 1].cedula) {
           ant = empleados[i];
           empleados[i] = empleados[i + 1];
@@ -1309,8 +1330,7 @@ function nomina2() {
           let cedula = e.cedula;
           let cargo = e.cargo;
           let tot = total;
-          var nomina = {
-            cedula,
+          var nomina = {cedula,
             cargo,
             tot
           };
