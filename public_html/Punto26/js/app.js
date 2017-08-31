@@ -8,33 +8,32 @@ function menu() {
 }
 
 function sum() {
-  let number1 = parseInt(prompt('Write one number'));
-  let number2 = parseInt(prompt('Write one number'));
+  let number1 = parseInt(prompt('Write one number')),
+          number2 = parseInt(prompt('Write one number'));
   alert(number1 + number2);
   validate();
 }
 function subtraction() {
-  let number1 = parseInt(prompt('Write one number'));
-  let number2 = parseInt(prompt('Write one number'));
+  let number1 = parseInt(prompt('Write one number')),
+          number2 = parseInt(prompt('Write one number'));
   alert(number1 - number2);
   validate();
 }
 function multiplication() {
-  let number1 = parseInt(prompt('Write one number'));
-  let number2 = parseInt(prompt('Write one number'));
+  let number1 = parseInt(prompt('Write one number')),
+          number2 = parseInt(prompt('Write one number'));
   alert(number1 * number2);
   validate();
 }
 function division() {
-  let number1 = parseInt(prompt('Write one number'));
-  let number2 = parseInt(prompt('Write one number'));
+  let number1 = parseInt(prompt('Write one number')),
+          number2 = parseInt(prompt('Write one number'));
   alert(number1 / number2);
   validate();
 }
 function exit() {
   alert('Bay Bay ;)');
 }
-
 function validate() {
   let option = menu();
   switch (option) {

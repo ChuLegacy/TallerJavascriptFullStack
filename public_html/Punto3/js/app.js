@@ -1,2 +1,2 @@
-let name = prompt('What is your name?');
-console.log(`Hi, I am ${name} and I am happy to Being learning JavaScript`);
+let name = prompt("What's your name?");
+console.log(`Hi, I'm ${name} and I'm happy to have be learning JavaScript`);

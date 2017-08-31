@@ -1,15 +1,6 @@
 let number = parseInt(prompt('Enter one number'));
-
-function primo(number) {
-  if (number === 2) {
-    return 'Es un numero primo';
-  }
-  for (let i = 2; i <= number; i++) {
-    if (number % i === 0) {
-      return 'No es un numero Primo';
-    } else {
-      return 'Es un numero primo';
-    }
-  }
+let tmp = 0;
+for (let i = 1; i <= number; i++) {
+  number % i === 0 ? tmp++ : tmp;
 }
-console.log(primo(number));
+console.log(tmp === 2 ? "It's a prime number" : "It's not a prime number");

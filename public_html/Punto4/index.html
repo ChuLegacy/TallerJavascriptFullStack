@@ -10,26 +10,26 @@
   <body>
     <main class="container bg-black">
       <section class="row d-flex justify-content-center align-items-center">
-        <form class="form col-10 offset-1 ">
+        <form class="form col-10 offset-1" id="data">
           <div class="form-group">
-            <label for="name" class="text-center">What is your name? </label>
-            <input required type="text" name="name" id="name" placeholder="Write your name" class="form-control">
+            <label for="name" class="text-center">What's his name? </label>
+            <input required type="text" name="name" id="name" placeholder="Write your name" class="form-control" required>
           </div>
           <div class="form-group">
-            <select required name="id_type" id="idType" class="form-control">
+            <select required name="id_type" id="idType" class="form-control" required>
               <option value="" selected="selected">Document type</option>
-              <option value="Citizenship Card">Citizenship Card</option>
+              <option value="Citizenship Card">Citizenship card</option>
               <option value="Identity Card">Identity Card</option>
               <option value="Foreigner ID">Foreigner ID</option>
-              <option value="PS">Pasaporte</option>
+              <option value="PS">Passport</option>
             </select>
           </div>
           <div class="form-group">
             <label for="id_number">Identification Number: </label>
-            <input required type="number" name="id_number" id="id_number" min="0" placeholder="Identification Number" class="form-control">
+            <input required type="number" name="id_number" id="id_number" min="0" placeholder="Identification Number" class="form-control" required>
           </div>
           <div class="form-group">
-            <select required name="gender" id="gender" class="form-control">
+            <select required name="gender" id="gender" class="form-control" required>
               <option value="">Biological Gender:</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
@@ -38,14 +38,14 @@
           </div>
           <div class="form-group">
             <label for="height">My height is (mts):</label>
-            <input type="number" placeholder="Height" min="0" max="300" maxlength="3" id="height" class="form-control">
+            <input type="number" placeholder="Height" min="0" max="300" maxlength="3" id="height" class="form-control" required>
           </div>
           <div class="form-check-inline mb-3">
-            <label for="live" class="">Is it true that I live in Cartago ?</label>
-            <input required type="checkbox" id="live" class="form-control">
+            <label for="live" class="">Is it true that I live in Cartago?</label>
+            <input type="checkbox" id="live" class="form-control">
           </div>
           <div class="form-group">
-            <input type="button" value="Send data to console" id="data" class=" form-control btn btn-outline-danger">
+            <input type="submit" value="Send data to console" class=" form-control btn btn-outline-danger">
           </div>
         </form>
       </section>

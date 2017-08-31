@@ -1,37 +1,29 @@
-class Numbers {
-  constructor(size) {
-    this.size = size;
-    this.number;
-    this.paires = [];
-    this.prime = [];
+class Number {
+  constructor() {
+    this._array;
+    this._pair;
+    this._prime = [];
+    this._sumPair;
+    this._sumPrime;
+    this._medianPair;
+    this._medianPrime;
   }
-  capture() {
-    this.number = [];
-    for (let i = 0; i < this.size; i++) {
-      this.number[i] = parseInt(prompt('Enter to number'));
-    }
-    return this.number;
+  set array(array) {
+    this._array = array;
   }
-  pair() {
-    let i = 0;
-    let j = 0;
-    while (i < this.number.length) {
-      if (this.number[i] % 2 === 0) {
-        this.paires[j] = this.number[i];
-        j++;
-      }
-      i++;
-    }
-    let info = '';
-    this.paires.forEach((e) => {
-      info += e + " ";
+  get array() {
+    return this._array;
+  }
+  set pairs(array) {
+    this._pair = array.filter((e) => {
+      return e % 2 === 0;
     });
-    console.log(`These are even numbers ${info}`);
-    return this.paires;
   }
-  primes() {
-    let m = 0;
-    for (let num of this.number) {
+  get pairs() {
+    return this._pair;
+  }
+  set prime(array) {
+    for (let num of array) {
       let tmp = 0;
       for (let i = 1; i <= num; i++) {
         if (num % i === 0) {
@@ -39,57 +31,73 @@ class Numbers {
         }
       }
       if (tmp === 2) {
-        this.prime[m] = num;
-        m++;
+        this.prime.push(num);
       }
     }
-    let info = '';
-    this.prime.forEach((e) => {
-      info += e + " ";
-    });
-    console.log(`These are the prime numbers ${info}`)
-    return this.prime;
   }
-  sumPrime() {
-    let info = 0;
-    this.prime.forEach((e) => {
-      info += e;
-    });
-    console.log(`This is the sum of prime numbers ${info}`);
+  get prime() {
+    return this._prime;
   }
-  sumPair() {
-    let info = 0;
-    this.paires.forEach((e) => {
-      info += e;
+  set sumPair(array) {
+    this._sumPair = array.reduce((a, e) => {
+      return a + e;
     });
-    console.log(`This is the sum of even numbers ${info}`);
   }
-  promPrime() {
-    let size = this.prime.length;
-    let info = 0;
-    this.prime.forEach((e) => {
-      info += e;
-    });
-    console.log(`The average prime number is ${info / size} `);
+  get sumPair() {
+    return this._sumPair;
   }
-  promPair() {
-    let size = this.paires.length;
-    let info = 0;
-    this.paires.forEach((e) => {
-      info += e;
+  set sumPrime(array) {
+    this._sumPrime = array.reduce((a, e) => {
+      return a + e;
     });
-    console.log(`The average of even numbers is ${info / size}`);
+  }
+  get sumPrime() {
+    return this._sumPrime;
+  }
+  set medianPair(array) {
+    this._medianPair = array.reduce((a, e, i, o) => {
+      debugger
+
+      return (a + e) / o.length;
+    });
+  }
+  get medianPair() {
+    return this._medianPair;
+  }
+  set medianPrime(array) {
+    this._medianPrime = array.reduce((a, e, i, o) => {
+      return (a + e) / o.length;
+    });
+  }
+  get medianPrime() {
+    return this._medianPrime;
   }
 }
+let size = parseInt(prompt("Define el tamaño del arreglo"));
+var arreglo = [];
+for (let i = 0; i < size; i++) {
+  arreglo[i] = parseInt(prompt("Digite el numero"));
+}
 
-let size = parseInt(prompt('What is the size of your arrangement?'));
+let numbers = new Number();
 
-let ciclos = new Numbers(size);
+numbers.array = arreglo;
+console.log(numbers.array);
 
-ciclos.capture();
-ciclos.pair();
-ciclos.primes();
-ciclos.sumPrime();
-ciclos.sumPair();
-ciclos.promPrime();
-ciclos.promPair();
+numbers.pairs = numbers.array;
+console.log(numbers.pairs);
+
+numbers.prime = numbers.array;
+console.log(numbers.prime);
+
+numbers.sumPair = numbers.pairs;
+console.log(numbers.sumPair);
+
+numbers.sumPrime = numbers.prime;
+console.log(numbers.sumPrime);
+
+numbers.medianPair = numbers.pairs;
+console.log(numbers.medianPair);
+
+//numbers.medianPrime = numbers.prime;
+//console.log(numbers.medianPrime);

@@ -1,5 +1,4 @@
 let x = '*';
-//let y = '*';
 for (let j = 0; j <= 7; j++) {
   x = x + '*';
 }
@@ -14,14 +13,12 @@ for (let i = 0; i <= 13; i++) {
         break;
       case 2:
         console.log(`  ${x.slice(2, 7)}`);
-
         break;
       case 3:
         console.log(` ${x.slice(2, 9)}`);
         break;
       case 4:
         console.log(`   ${x.slice(2, 5)}`);
-
         break;
       case 5:
         console.log(`   ${x.slice(2, 5)}`);
@@ -43,16 +40,12 @@ for (let i = 0; i <= 13; i++) {
         break;
       case 11:
         console.log(`   ${x.slice(2, 5)}`);
-
         break;
       case 12:
         console.log(`    ${x.slice(2, 3)}    `);
-
         break;
       default:
-
         break;
     }
   }
-
 }

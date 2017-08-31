@@ -10,9 +10,9 @@
   <body>
     <main class="container bg-black">
       <section class="row d-flex justify-content-center align-items-center">
-        <form class="form col-10 offset-1 ">
+        <form class="form col-10 offset-1" id="data">
           <div class="form-group">
-            <label for="name" class="text-center">What is your name? </label>
+            <label for="name" class="text-center">What's his name?</label>
             <input required type="text" name="name" id="name" placeholder="Write your name" class="form-control">
           </div>
           <div class="form-group">
@@ -21,7 +21,7 @@
               <option value="Citizenship Card">Citizenship Card</option>
               <option value="Identity Card">Identity Card</option>
               <option value="Foreigner ID">Foreigner ID</option>
-              <option value="PS">Pasaporte</option>
+              <option value="PS">Passport</option>
             </select>
           </div>
           <div class="form-group">
@@ -29,7 +29,7 @@
             <input required type="number" name="id_number" id="id_number" min="0" placeholder="Identification Number" class="form-control">
           </div>
           <div class="form-group">
-            <input type="button" value="Send data to console" id="data" class=" form-control btn btn-outline-danger">
+            <input type="submit" value="Send data to console"  class=" form-control btn btn-outline-danger">
           </div>
         </form>
       </section>

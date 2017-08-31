@@ -1,8 +1,2 @@
 let age = prompt('What your is age? ');
-
-if (age >= 18) {
-  console.log("You can enter the reventon");
-} else {
-  console.log("You can not enter the reventon");
-
-}
+console.log(age >= 18 ? "You can enter the reventon" : "You can not enter the reventon");

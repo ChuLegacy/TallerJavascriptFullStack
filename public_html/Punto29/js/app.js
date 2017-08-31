@@ -1,39 +1,30 @@
-
 function menu() {
   let option = parseInt(prompt(`Welcome to BurguerTown
-
   1. Enter Product
   2. Search for product by name
   3. Find product by code
   0. Exit Program`));
   return option;
 }
-
-
 var arrangement = [];
-
 function ingresum() {
   let code = parseInt(prompt('What is your new product code?'));
   let name = prompt('What is the name of your new product');
   let price = prompt('What is the price of your new product');
-
   let data = {
     name,
     code,
     price
   };
-  if (localStorage.length === 0) {
+  let arrangement = JSON.parse(localStorage.getItem('data'));
+  if (localStorage.data.length === 0) {
     arrangement.push(data);
-
   } else {
     arrangement.push(data);
   }
-//  console.log(typeof (arrangement));
   localStorage.setItem('data', JSON.stringify(arrangement));
-
   validate();
 }
-
 function name() {
   let find = prompt('Which product do you want to search?');
   arrangement = JSON.parse(localStorage.getItem('data'));

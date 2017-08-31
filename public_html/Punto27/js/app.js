@@ -1,5 +1,5 @@
 function menu() {
-  option = parseInt(prompt(`Select an option to enter your data.
+  let option = parseInt(prompt(`Select an option to enter your data.
 1. Personal information
 2. Family reference
 3. Labor reference
@@ -8,9 +8,6 @@ function menu() {
 0. Quit the program`));
   return option;
 }
-/*
- * Personal Information
- */
 var person = {
   name: '',
   last: '',
@@ -24,9 +21,6 @@ function personal() {
   person.city = prompt('What is your city?');
   return validate();
 }
-/*
- * Family Reference
- */
 var family = {
   name: '',
   occupation: '',
@@ -38,9 +32,6 @@ function familyR() {
   family.mobile = prompt('What is your mobile?');
   return validate();
 }
-/*
- * Labor Reference
- */
 var labor = {
   name: '',
   occupation: '',
@@ -52,9 +43,6 @@ function laborR() {
   labor.mobile = prompt('What is your mobile?');
   return validate();
 }
-/*
- * Description
- */
 var perfil;
 function perfilR() {
   perfil = prompt('Occupational profile description?');

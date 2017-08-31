@@ -1,27 +1,17 @@
-let i = 0;
-let numbers = [];
-/*
- * ciclo para do while para pedir los numeros
- */
+let i = 0,
+        numbers = [];
 do {
   numbers[i] = parseInt(prompt('Write one number'));
   i++;
 } while (i < 10)
-/*
- * Variables para guardar en otro arreglo los pares
- */
-let pair = [];
-let p = 0;
-/*
- * Variable para guardar en otro arreglo numeros primos
- */
-let prime = [];
-let m = 0;
-let j = 1;
+let pair = [],
+        p = 0,
+        prime = [],
+        m = 0,
+        j = 1;
 for (let number of numbers) {
-  let c = 0;
-  let divisible = [];
-
+  let c = 0,
+          divisible = [];
   if (number % 2 === 0) {
     pair[p] = number;
     p++;
@@ -39,10 +29,10 @@ for (let number of numbers) {
 }
 console.log(`These are even numbers:  ${pair.toString()}`);
 console.log(`These are the prime numbers:  ${prime.toString()}`);
-let add = 0;
-let sum = pair.map((e) => {
-  add = add + e;
-});
+let add = 0,
+        sum = pair.map((e) => {
+          add = add + e;
+        });
 console.log(`This is the sum of even numbers: ${add}`);
 let prompi = add / pair.length;
 add = 0;

@@ -6,7 +6,12 @@ let height = document.getElementById('height');
 let live = document.getElementById('live');
 let data = document.getElementById('data');
 
-data.addEventListener('click', () => {
-  console.log(`name: ${name.value}\n`, `Id Type: ${idType.value}\n`, `Id Number: ${idNumber.value}\n`, `Gender: ${gender.value}\n`, `Height: ${height.value}\n`, `Live In Cartago? ${live.value}\n`);
-
+data.addEventListener('submit', (e) => {
+  e.preventDefault();
+  console.log(`name: ${name.value}
+Id Type: ${idType.value}
+Id Number: ${idNumber.value}
+Gender: ${gender.value}
+Height: ${height.value}
+Live In Cartago? ${live.checked}`);
 });
