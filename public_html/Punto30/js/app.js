@@ -247,6 +247,7 @@ function add() {
           validateGestion();
           break;
         } else {
+          debugger
           cont = 0;
         }
       }
@@ -448,7 +449,7 @@ function hoursLab() {
         }
         i++;
         var nightHours = parseInt(prompt('Cuantas horas nocturnas has trabajado'));
-      } while ((nightHours > hoursMin) || ((daytimeHours + nightHours) > hoursMin));
+      } while ((nightHours > hoursMin) && ((daytimeHours + nightHours) > hoursMin));
       i = 0;
       do {
         if (i !== 0) {
@@ -456,7 +457,7 @@ function hoursLab() {
         }
         i++;
         var daytimeSundayHours = parseInt(prompt('Cuantas horas dominicales diurnas has trabajado'));
-      } while ((daytimeSundayHours > hoursMin) || (daytimeHours + daytimeSundayHours > hoursMin) || (nightHours + daytimeSundayHours > hoursMin));
+      } while ((daytimeSundayHours > hoursMin) && (daytimeHours + daytimeSundayHours > hoursMin) && (nightHours + daytimeSundayHours > hoursMin));
       i = 0;
       do {
         if (i !== 0) {
@@ -464,7 +465,7 @@ function hoursLab() {
         }
         i++;
         var nightSundayHours = parseInt(prompt('Cuantas horas dominicales nocturnas has trabajado'));
-      } while ((nightSundayHours > hoursMin) || (daytimeHours + nightSundayHours > hoursMin) || (nightHours + nightSundayHours > hoursMin) || (daytimeSundayHours + nightSundayHours > hoursMin));
+      } while ((nightSundayHours > hoursMin) && (daytimeHours + nightSundayHours > hoursMin) && (nightHours + nightSundayHours > hoursMin) && (daytimeSundayHours + nightSundayHours > hoursMin));
       let daytimeOvertime = parseInt(prompt('Cuantas horas extras diurnas has trabajado'));
       let nightOvertime = parseInt(prompt('Cuantas horas extras nocturnas has trabajado'));
       let daytimeExtraSundayHours = parseInt(prompt('Cuantas horas dominicales extra diurnas has trabajado'));
@@ -623,6 +624,7 @@ function nomina() {
       });
     });
   }
+  config();
 }
 function pago() {
   let empleados = JSON.parse(localStorage.getItem('empleados'));
@@ -669,6 +671,7 @@ function pago() {
 
     }
   }
+  config();
 }
 function validateContinuar() {
   let option = continuar();

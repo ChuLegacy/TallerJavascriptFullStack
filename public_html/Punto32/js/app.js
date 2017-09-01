@@ -13,45 +13,73 @@ class Menu {
 class Operations extends Menu {
   constructor() {
     super();
-    this.menu;
+    this._sum;
+    this._subtraction;
+    this._multiplication;
+    this._division;
   }
-  sum() {
-    if (this.option === 1) {
-      let num1 = parseInt(prompt('Write one number'));
-      let num2 = parseInt(prompt('Write one number'));
-      console.log(num1 + num2);
-    }
+  set sum(numbers) {
+    this._sum = numbers[0] + numbers[1];
   }
-  subtraction() {
-    if (this.option === 2) {
-      let num1 = parseInt(prompt('Write one number'));
-      let num2 = parseInt(prompt('Write one number'));
-      console.log(num1 - num2);
-    }
+  get sum() {
+    return this._sum;
   }
-  multiplication() {
-    if (this.option === 3) {
-      let num1 = parseInt(prompt('Write one number'));
-      let num2 = parseInt(prompt('Write one number'));
-      console.log(num1 * num2);
-    }
+  set subtraction(numbers) {
+    this._subtraction = numbers[0] - numbers[1];
   }
-  division() {
-    if (this.option === 4) {
-      let num1 = parseInt(prompt('Write one number'));
-      let num2 = parseInt(prompt('Write one number'));
-      console.log(num1 / num2);
-    }
+  get subtraction() {
+    return this._subtration;
+  }
+  set multiplication(numbers) {
+    this._multiplication = numbers[0] * numbers[1];
+  }
+  get multiplication() {
+    return this._multiplication;
+  }
+  set division(numbers) {
+    this._division = numbers[0] / numbers[1];
+  }
+  get division() {
+    return this._division;
   }
   quit() {
-    if (this.option === 4) {
-      alert('Bay');
-    }
+    alert('Bay');
   }
 }
 let opera = new Operations();
-opera.sum();
-opera.subtraction();
-opera.multiplication();
-opera.division();
-opera.quit();
+switch (opera.option) {
+  case 1:
+    var num1 = parseInt(prompt('Write one number')),
+            num2 = parseInt(prompt('Write one number'));
+    var numbers = [num1, num2];
+    opera.sum = numbers;
+    console.log(opera.sum);
+    break;
+  case 2:
+    var num1 = parseInt(prompt('Write one number')),
+            num2 = parseInt(prompt('Write one number'));
+    var numbers = [num1, num2];
+    opera.subtraction = numbers;
+    console.log(opera.subtraction);
+    break;
+  case 3:
+    var num1 = parseInt(prompt('Write one number')),
+            num2 = parseInt(prompt('Write one number'));
+    var numbers = [num1, num2];
+    opera.multiplication = numbers;
+    console.log(opera.multiplication);
+    break;
+  case 4:
+    num1 = parseInt(prompt('Write one number')),
+            num2 = parseInt(prompt('Write one number'));
+    numbers = [num1, num2];
+    opera.division = numbers;
+    console.log(opera.division);
+    break;
+  case 0:
+    opera.quit();
+    break;
+  default:
+    alert('Select a correct option');
+    break;
+}

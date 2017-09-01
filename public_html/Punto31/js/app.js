@@ -55,19 +55,13 @@ class Number {
     return this._sumPrime;
   }
   set medianPair(array) {
-    this._medianPair = array.reduce((a, e, i, o) => {
-      debugger
-
-      return (a + e) / o.length;
-    });
+    this._mediaPair = array / this._pair.length;
   }
   get medianPair() {
-    return this._medianPair;
+    return this._mediaPair;
   }
   set medianPrime(array) {
-    this._medianPrime = array.reduce((a, e, i, o) => {
-      return (a + e) / o.length;
-    });
+    this._medianPrime = array / this._prime.length;
   }
   get medianPrime() {
     return this._medianPrime;
@@ -96,8 +90,8 @@ console.log(numbers.sumPair);
 numbers.sumPrime = numbers.prime;
 console.log(numbers.sumPrime);
 
-numbers.medianPair = numbers.pairs;
+numbers.medianPair = numbers.sumPair;
 console.log(numbers.medianPair);
 
-//numbers.medianPrime = numbers.prime;
-//console.log(numbers.medianPrime);
+numbers.medianPrime = numbers.sumPrime;
+console.log(numbers.medianPrime);
