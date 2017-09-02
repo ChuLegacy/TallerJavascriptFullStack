@@ -10,6 +10,7 @@ class Menu {
     return this.option;
   }
 }
+
 class Persona extends Menu {
   constructor() {
     super();
@@ -50,23 +51,23 @@ class Persona extends Menu {
       case 1:
         this.personalData();
         this.validate();
-      break;
+        break;
       case 2:
         this.familyBenchmark();
         this.validate();
-      break;
+        break;
       case 3:
         this.jobReference();
         this.validate();
-      break;
+        break;
       case 4:
         this.description();
         this.validate();
-      break;
+        break;
       case 5:
         this.printAll();
         this.validate();
-      break;
+        break;
       case 0:
         alert('Bay');
         break;
@@ -81,28 +82,28 @@ class Persona extends Menu {
     let lastName = prompt("What's your lastName?");
     let city = prompt("What's your city?");
     let nationality = prompt("What is your nationality");
-    let data = { name, lastName, city, nationality };
+    let data = {name, lastName, city, nationality};
     this._personalInformation = data;
   }
   familyBenchmark() {
     let name = prompt("What's your name?");
     let mobile = prompt("What's your mobile?");
     let occupation = prompt("What's your occupation?");
-    let data = { name, mobile, occupation };
+    let data = {name, mobile, occupation};
     this._familiReference = data;
   }
   jobReference() {
     let name = prompt("What's your name?");
     let mobile = prompt("What's your mobile?");
     let occupation = prompt("What's your occupation?");
-    let data = { name, mobile, occupation };
+    let data = {name, mobile, occupation};
     this._workReference = data;
   }
-  description(){
+  description() {
     let desc = prompt(`Write a professional profile description`);
-    let data = { desc };
+    let data = {desc};
     this._professionalProfileDescription = data;
-}
+  }
   printAll() {
     let data = [];
     if (this._personalInformation) {
