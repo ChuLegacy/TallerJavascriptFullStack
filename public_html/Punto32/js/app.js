@@ -13,10 +13,10 @@ class Menu {
 class Operations extends Menu {
   constructor() {
     super();
-    this._sum;
-    this._subtraction;
-    this._multiplication;
-    this._division;
+    this._sum = 0;
+    this._subtraction = 0;
+    this._multiplication = 0;
+    this._division = 0;
   }
   set sum(numbers) {
     this._sum = numbers[0] + numbers[1];

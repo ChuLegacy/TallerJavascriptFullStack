@@ -1,6 +1,12 @@
 class Register {
   constructor() {
-    this.arrangement = [];
+    this._array = [];
+  }
+  set array(array) {
+    array = this._array;
+  }
+  get array() {
+    return this._array;
   }
   menu() {
     let option = parseInt(prompt(`Welcome to BurguerTown
@@ -13,30 +19,33 @@ class Register {
   ingresum() {
     let code = parseInt(prompt('What is your new product code?'));
     let name = prompt('What is the name of your new product');
-    let price = prompt('What is the price of your new product');
+    let price = parseInt(prompt('What is the price of your new product'));
 
     let data = {
       name,
       code,
       price
     };
-    if (localStorage.length === 0) {
-      this.arrangement.push(data);
+
+    if (!localStorage.data) {
+      this._array = data;
+      localStorage.setItem('data', JSON.stringify(this._array));
 
     } else {
-      this.arrangement.push(data);
+      this._array = [];
+      this._array.push(JSON.parse(localStorage.getItem('data')));
+      this._array.push(data);
+      localStorage.setItem('data', JSON.stringify(this._array));
     }
-    localStorage.setItem('data', JSON.stringify(this.arrangement));
 
     this.validate();
   }
-
   name() {
     let find = prompt('Which product do you want to search?');
-    this.arrangement = JSON.parse(localStorage.getItem('data'));
+    this._array = JSON.parse(localStorage.getItem('data'));
     let cont = 0;
-    for (let array in this.arrangement) {
-      if (find === this.arrangement[array].name) {
+    for (let array in this._array) {
+      if (find === this._array[array].name) {
         cont++;
       }
     }
@@ -45,10 +54,10 @@ class Register {
   }
   code() {
     let find = parseInt(prompt('Enter the product code to search'));
-    this.arrangement = JSON.parse(localStorage.getItem('data'));
+    this._array = JSON.parse(localStorage.getItem('data'));
     let cont = 0;
-    for (let array in this.arrangement) {
-      if (find === this.arrangement[array].code) {
+    for (let array in this._array) {
+      if (find === this._array[array].code) {
         cont++;
       }
     }

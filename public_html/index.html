@@ -11,11 +11,11 @@
       <div class="row" id="menu">
         <form class="col-10 offset-1">
           <script>
-            var select = `<select class="form-control">`;
+            let select = `<select class="form-control">`;
 //            var menu = `<option>i</ioption>`;
-            var selected = `</select>`;
+            let selected = `</select>`;
             document.write(select);
-            for (var i = 1; i <= 108; i++) {
+            for (let i = 1; i <= 108; i++) {
               document.write(`<option href='Punto${i}/index.html'>${i}</ioption>`);
             }
             document.write(selected);

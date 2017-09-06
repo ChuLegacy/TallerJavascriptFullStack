@@ -1,20 +1,14 @@
 $(() => {
-
-
-  let asterisc = '*';
-  let container = $('#text').parent();
-//  console.log(container);
+    let x = '',
+    j = 1;
   do {
-    let p = $(container).add('<p>');
-
-    p.appendTo(container);
-    p.text('hola');
-    console.log(p);
-//    text(asterisc);
-//    console.log(p);
-
-  } while (1 === 2);
-
+    for (let i = 0; i <= 5; i++) {
+      $('#cont').append(`${x += '*'} <br>`);
+    }
+    j++;
+    if (j === 1) {
+      console.log(':D');
+    }
+  } while (j === 1);
   $('#modal').modal('show');
-
 });
