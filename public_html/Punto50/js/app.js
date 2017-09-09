@@ -7,12 +7,25 @@ $(() => {
 		$('#employes').fadeOut('slow');
 		let input = $(this).find('[type=number]');
 		input.replaceWith(text);
-
-		let buttonNext = $(this).find('[type=submit]').clone();
-		console.log(buttonNext);
-		$(this).find('.input-group').eq(1).before(buttonNext);
+		$('#second').on('click', button => {
+			$('#modalSeconds').modal('show');
+			$('#secondExercise').on('submit', form => {
+				form.preventDefault();
+				let profit = (($('#work').val() * 45000) - 20000);
+				$('#work').slideDown('slow');
+				$('#work').replaceWith(`<p>The employee's profit on the day is${profit}</p>`);
+				$('#third').on('click', button => {
+					$('#modalThird').modal();
+					$('#modalSeconds').modal('hide');
+					$('#modal').modal('hide');
+					let centimeters = 2.54;
+					let inches = 12;
+					let feet = 5.280;
+					let result = centimeters * inches * feet;
+					// let finish = alert(``);
+					$('#result').append(`There are, ${result}, centimeters in one milen`);
+				});
+			});
+		});
 	});
-	setTimeout(() => {
-
-	},2000);
 });

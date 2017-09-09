@@ -4,7 +4,7 @@
 <head>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Punto 50</title>
 	<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 
 	<link rel="stylesheet" href="css/style.css">
@@ -15,41 +15,66 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h1 class="modal-title">Punto 50</h1>
+					<h1 class="modal-title">First Exercise</h1>
 				</div>
 				<div class="modal-body">
+					<p>A company has $258,320,000 to distribute to its employees as a bonus. How much money will each employee receive?</p>
 					<form id="company">
 						<div class="form-group">
 							<input type="number" class="form-control" placeholder="how many employees your company has?" id="employes">
 						</div>
 						<div class="form-group">
 							<input type="submit" value="send" class="btn btn-success">
+							<button class="btn btn-outline-primary" type="button" id="second">Next</button>
+
 						</div>
+
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 	<!-- Second exercise -->
-	<div class="modal fade" id="modal">
+	<div class="modal fade" id="modalSeconds">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h1 class="modal-title">Punto 50</h1>
+					<h1 class="modal-title">Second Exercise</h1>
 				</div>
 				<div class="modal-body">
-					<form id="company">
+					<p>An electrician charges $45,000 an hour and spends $20,000 a day on gasoline. What is your profit for one day?</p>
+					<form id="secondExercise">
 						<div class="form-group">
-							<input type="number" class="form-control" placeholder="how many employees your company has?" id="employes">
+							<input type="number" class="form-control" placeholder="how many hours worked?" id="work">
 						</div>
 						<div class="form-group">
 							<input type="submit" value="send" class="btn btn-success">
+							<button class="btn btn-outline-primary" type="button" id="third">Next</button>
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<!-- Third exercise  -->
+	<div class="modal fade" id="modalThird">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title">Third Exercise</h1>
+				</div>
+				<div class="modal-body">
+					<!-- <input type="text"> -->
+					<p>There are 5,280 feet in a mile, 12 inches in a foot and 2.54 centimeters in an inch. How many centimeters are there
+						in a mile?</p>
+					<p id="result"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
 	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../node_modules/tether/dist/js/tether.min.js"></script>
 	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
