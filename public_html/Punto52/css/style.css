@@ -1,0 +1,15 @@
+.medium{
+	height: 100vh;
+}
+.Container-rectangle{
+	position: absolute;
+}
+.rectangle{
+	background-color: steelblue;
+}
+#perimeter{
+	z-index: 100;
+}
+.alert{
+	z-index: 1000;
+}
