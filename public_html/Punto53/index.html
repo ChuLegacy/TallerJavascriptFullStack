@@ -6,21 +6,36 @@
 	<meta charset="UTF-8">
 	<title>Document</title>
 	<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-
 	<link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-	<!-- alert(`Rule  of three is so: result = A * B / C`);
-let a = parseInt(prompt('Value of A ? ')),
-        b = parseInt(prompt('Value of B ? ')),
-        c = parseInt(prompt('Value of C ? '));
-
-alert(`${a * b / c}`); -->
-
 	<div class="container">
 		<div class="row d-flex justify-content-center align-items-center" style="height: 100vh">
-			Hla Mundo
+			<form id="ruleOfThree">
+				<div class="form-group">
+					<input type="number" class="form-control" placeholder="Write your first number" id="first">
+				</div>
+				<div class="form-group">
+					<input type="number" class="form-control" placeholder="Write your second number" id="second">
+				</div>
+				<div class="form-group">
+					<input type="number" class="form-control" placeholder="Write your third number" id="third">
+				</div>
+				<input type="submit" value="Calculate" class="btn btn-outline-success" id="calculate">
+			</form>
+		</div>
+	</div>
+	<div class="modal fade" id="modal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title">Punto53</h1>
+				</div>
+				<div class="modal-body">
+					<p id="result"></p>
+				</div>
+			</div>
 		</div>
 	</div>
 	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
