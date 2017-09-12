@@ -11,7 +11,6 @@ $(() => {
 			$(this).parent().prepend(`<h1 class="display-4 has-danger">You must enter a number less than zero</h1>`);
 		}
 		number.on('keydown', () => {
-			console.log('etas presionando en el input');
 			$('.display-4').animate({ opacity: 0, height: 0 }, 2000);
 		});
 	});

@@ -1,13 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Punto 56</title>
+	<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body>
 
-<script src="./js/app.js"></script>
+<body class="">
+
+	<div class="container">
+		<div class="row d-flex justify-content-center align-items-center" style="height: 100vh">
+			<div class="jumbotron">
+				<form id="configuration">
+
+					<div class="input-group my-2">
+						<span class="input-group-addon">&#x1F911;</span>
+						<input type="number" min="0" required id="salaryBase" class="form-control-lg" placeholder="Minimum wage">
+					</div>
+					<div class="input-group my-2">
+						<span class="input-group-addon">&#x1F4C9;</span>
+						<input type="number" min="0" required id="retention" class="form-control-lg" placeholder="% Font retention">
+					</div>
+					<div class="input-group my-2">
+						<span class="input-group-addon">&#x1F4B0;</span>
+						<input type="number" min="0" id="auxiliary" required class="form-control-lg" placeholder="Auxiliary transport">
+					</div>
+					<div class="form-group text-center">
+						<input type="submit" value="Send configuration" class="btn btn-lg btn-outline-info">
+					</div>
+				</form>
+			</div>
+			<div class="modal fade" id="userConfiguration">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h1 class="modal-title">Your configuration</h1>
+						</div>
+						<div class="modal-body">
+							<form id="employe">
+								<div class="input-group my-2">
+									<span class="input-group-addon">&#x1F4B0;</span>
+									<input type="number" id="salaryUser" min="0" class="form-control" required placeholder="Your salary?">
+								</div>
+								<div class="input-group my-2">
+									<span class="input-group-addon">&#x1F304;</span>
+									<input type="number" id="daysWorked" max="30" required class="form-control" placeholder="Days worked?">
+								</div>
+								<div class="input-group my-2">
+									<input type="submit" value="Send" class="btn bt-lg btn-success">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/tether/dist/js/tether.min.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/app.js"></script>
 </body>
+
 </html>
