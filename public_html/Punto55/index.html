@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Punto 55</title>
+	<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
 	<link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<script src="./js/app.js"></script>
+	<div class="container">
+		<div class="row d-flex justify-content-center align-items-center">
+			<div class="jumbotron">
+				<h1>Conver to number negative to positive</h1>
+				<form id="convert">
+					<!-- <h1 class="display-4 has-danger">You must enter a number less than zero</h1> -->
+					<div class="form-group">
+						<input type="number" placeholder="Write to number" class="form-control" id="number">
+					</div>
+					<div class="form-group">
+						<input type="submit" value="Convert" class="btn btn-lg btn-success" id="button">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../node_modules/tether/dist/js/tether.min.js"></script>
+	<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./js/app.js"></script>
 </body>
+
 </html>
