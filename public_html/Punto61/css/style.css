@@ -1,0 +1,24 @@
+.btn{
+	cursor: pointer;
+}
+.rotate{
+	transition: all 2s;
+	transform: rotateX(360deg);
+}
+.btnFill{
+	position: relative;
+	left: 50px;
+	opacity: 0;
+}
+#fill{
+	position: relative;
+	left: 40px;
+}
+.trash{
+	position: fixed;
+	top: 0;
+	right: 0;
+}
+#fillText{
+	word-break: break-all;
+}
